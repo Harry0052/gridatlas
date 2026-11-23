@@ -1,0 +1,14 @@
+{
+  "name": "gridatlas-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --pretty false",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "node --experimental-strip-types --test web/test/atlas.test.ts",
+    "demo": "npm run build && go run ./cmd/gridatlas demo"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "SYN-GHOST",
+        "synthetic": true,
+        "boundary_note": "Synthetic rectangle with no supported source mapping."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]
+      }
+    }
+  ]
+}

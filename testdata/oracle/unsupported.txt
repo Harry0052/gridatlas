@@ -1,0 +1,7 @@
+# state_sum is present in the crosswalk and marked supported false.
+# The 77 MW row must not be published.
+
+as_of 2026-06-01
+SYN-WEST installed_nameplate_mw - incompatible 2026-03-01 unsupported_region_join
+SYN-WEST queued_requested_mw - missing - no_source
+SYN-WEST headroom_mw - unobserved - not_estimated

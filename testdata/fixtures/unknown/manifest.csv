@@ -1,0 +1,2 @@
+product,source_url,release_date,reporting_period,unit,region,mapping_method,content_sha256,snapshot_file,freshness_threshold_days
+installed_nameplate,fixture://unknown/installed,2026-03-01,2026-03,MW,SYN-GHOST,explicit_region,f01c8e959bd1113bf2665574d86b0b19ecf71bf8b6ab248126245a52295b76b8,snapshots/installed.csv,90

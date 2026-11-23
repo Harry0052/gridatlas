@@ -1,0 +1,6 @@
+product,source_url,release_date,reporting_period,unit,region,mapping_method,content_sha256,snapshot_file,freshness_threshold_days
+installed_nameplate,fixture://sample/north-installed,2026-03-15,2026-03,MW,SYN-NORTH,explicit_region,a7f5ce8ab3c8f7544245c7c43d09db62b43d3fe74bc2061eb525ac8ad422a354,snapshots/north-installed.csv,400
+queued_requested,fixture://sample/north-queue,2026-04-01,2026-Q1,MW,SYN-NORTH,explicit_region,8cb578444b09bcec5f089daa90455d719ce4ce62f15b06c3b86b5f05399cea9d,snapshots/north-queue.csv,90
+installed_nameplate,fixture://sample/central-installed,2026-05-01,2026-05,MW,SYN-CENTRAL,explicit_region,bbfbbdf045d41b52e6a88e8f285ad9fb46e1ff1f6c2fc49c964681f6ff93e5dc,snapshots/central-installed.csv,400
+queued_requested,fixture://sample/central-queue,2025-01-01,2025-Q4,MW,SYN-CENTRAL,explicit_region,25a0c23e275dbd0762a0b20e9d70b7eb4b4c54a0b7722cfd4dcfc7beb545eb5b,snapshots/central-queue.csv,90
+queued_requested,fixture://sample/south-queue,2026-05-01,2026-Q2,MVA,SYN-SOUTH,explicit_region,6936767321eeda959bce5d0276d528d700bdc15043a0c8a62c579e8bed75d9e0,snapshots/south-queue.csv,90

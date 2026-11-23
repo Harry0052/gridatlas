@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region_id": "SYN-EDGE",
+        "synthetic": true,
+        "boundary_note": "Synthetic rectangle used only to test the freshness boundary."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]
+      }
+    }
+  ]
+}

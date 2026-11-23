@@ -1,0 +1,8 @@
+record_id,request_id,technology,quantity,unit,basis,row_status
+QR-1,Q-20,Solar,20,MW,requested_mw,active
+QR-2,Q-30,Wind,30,MW,requested_mw,active
+QR-3,Q-20,Solar,20,MW,requested_mw,active
+QR-4,Q-AMB,Solar,10,MW,requested_mw,active
+QR-5,Q-AMB,Wind,25,MW,requested_mw,active
+QR-6,Q-99,Gas,80,MW,requested_mw,withdrawn
+QR-7,Q-77,Solar,15,MW,requested_mw,omitted

@@ -1,0 +1,4 @@
+source_region,atlas_region,mapping_method,supported
+SYN-NORTH,SYN-NORTH,explicit_region,true
+SYN-CENTRAL,SYN-CENTRAL,explicit_region,true
+SYN-SOUTH,SYN-SOUTH,explicit_region,true

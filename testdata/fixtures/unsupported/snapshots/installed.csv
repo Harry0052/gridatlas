@@ -1,0 +1,2 @@
+record_id,request_id,technology,quantity,unit,basis,row_status
+GEN-W-1,,Solar,77,MW,nameplate_mw,operating

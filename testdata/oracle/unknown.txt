@@ -1,0 +1,7 @@
+# The manifest names explicit_region, and the crosswalk has no row for it.
+# The 5 MW snapshot must not become the cell value. The display status is unknown.
+
+as_of 2026-06-01
+SYN-GHOST installed_nameplate_mw - missing 2026-03-01 no_defensible_mapping
+SYN-GHOST queued_requested_mw - missing - no_source
+SYN-GHOST headroom_mw - unobserved - not_estimated

@@ -1,0 +1,2 @@
+product,source_url,release_date,reporting_period,unit,region,mapping_method,content_sha256,snapshot_file,freshness_threshold_days
+installed_nameplate,fixture://boundary/installed,2026-01-01,2026-01,MW,SYN-EDGE,explicit_region,50799af90be643e3255b8e942535d4751455c61d70cf636ad1174d0c02a1f7d1,snapshots/installed.csv,30

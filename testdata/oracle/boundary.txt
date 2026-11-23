@@ -1,0 +1,13 @@
+# Freshness threshold is 30 days and the release date is 2026-01-01.
+# Age 30 on 2026-01-31 is still inside the threshold.
+# Age 31 on 2026-02-01 is stale. The value stays 10 and the release date stays 2026-01-01.
+
+as_of 2026-01-31
+SYN-EDGE installed_nameplate_mw 10 available 2026-01-01 -
+SYN-EDGE queued_requested_mw - missing - no_source
+SYN-EDGE headroom_mw - unobserved - not_estimated
+
+as_of 2026-02-01
+SYN-EDGE installed_nameplate_mw 10 stale 2026-01-01 -
+SYN-EDGE queued_requested_mw - missing - no_source
+SYN-EDGE headroom_mw - unobserved - not_estimated

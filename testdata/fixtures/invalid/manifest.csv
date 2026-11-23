@@ -1,0 +1,2 @@
+product,source_url,release_date,reporting_period,region,mapping_method,content_sha256,snapshot_file,freshness_threshold_days
+installed_nameplate,fixture://invalid/installed,2026-01-01,2026-01,SYN-BAD,explicit_region,0000000000000000000000000000000000000000000000000000000000000000,snapshots/installed.csv,90
