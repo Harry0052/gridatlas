@@ -1,0 +1,2 @@
+record_id,request_id,technology,quantity,unit,basis,row_status
+QR-S-1,Q-S-1,Solar,999,MVA,requested_mw,active

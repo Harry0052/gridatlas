@@ -1,0 +1,34 @@
+# Hand calculation for testdata/fixtures/sample.
+# Installed SYN-NORTH: GEN-N-1 100 MW once + GEN-N-2 20 MW = 120. The second GEN-N-1 row is ignored.
+# Queue SYN-NORTH: Q-20 20 MW once + Q-30 30 MW = 50. The second Q-20 row is ignored.
+# Q-AMB is 10 MW and 25 MW, so that request is excluded. Q-99 is withdrawn. Q-77 is omitted.
+# Headroom is not 120 - 50. The value stays unobserved.
+# SYN-CENTRAL installed is an explicit 0 MW row, which is a reported zero.
+# SYN-CENTRAL queue is 40 MW released 2025-01-01. At 2026-06-01 that age is past 90 days, so it is stale and the value stays 40.
+# SYN-SOUTH has no installed manifest row, so the cell is missing and the value is not 0.
+# SYN-SOUTH queue is labeled MVA. The 999 figure is not a MW total.
+# At 2026-08-01, SYN-NORTH queue age is 122 days against a 90-day threshold, so the cell is stale.
+# The value remains 50 and the release date remains 2026-04-01.
+# SYN-NORTH installed age is 139 days against a 400-day threshold, so it stays available at 120.
+
+as_of 2026-06-01
+SYN-CENTRAL installed_nameplate_mw 0 available 2026-05-01 -
+SYN-CENTRAL queued_requested_mw 40 stale 2025-01-01 -
+SYN-CENTRAL headroom_mw - unobserved - not_estimated
+SYN-NORTH installed_nameplate_mw 120 available 2026-03-15 -
+SYN-NORTH queued_requested_mw 50 available 2026-04-01 -
+SYN-NORTH headroom_mw - unobserved - not_estimated
+SYN-SOUTH installed_nameplate_mw - missing - no_source
+SYN-SOUTH queued_requested_mw - incompatible 2026-05-01 mislabeled_unit
+SYN-SOUTH headroom_mw - unobserved - not_estimated
+
+as_of 2026-08-01
+SYN-CENTRAL installed_nameplate_mw 0 available 2026-05-01 -
+SYN-CENTRAL queued_requested_mw 40 stale 2025-01-01 -
+SYN-CENTRAL headroom_mw - unobserved - not_estimated
+SYN-NORTH installed_nameplate_mw 120 available 2026-03-15 -
+SYN-NORTH queued_requested_mw 50 stale 2026-04-01 -
+SYN-NORTH headroom_mw - unobserved - not_estimated
+SYN-SOUTH installed_nameplate_mw - missing - no_source
+SYN-SOUTH queued_requested_mw - incompatible 2026-05-01 mislabeled_unit
+SYN-SOUTH headroom_mw - unobserved - not_estimated

@@ -1,0 +1,6 @@
+dist/
+node_modules/
+web/dist/
+.playwright-mcp/
+*.exe
+*.test

@@ -1,0 +1,7 @@
+GridAtlas synthetic fixtures and code are covered by the MIT license in LICENSE.
+
+This repository does not redistribute U.S. Energy Information Administration files or Lawrence Berkeley National Laboratory Queued Up workbooks.
+
+EIA publications are U.S. government works in the public domain. If you adapt an EIA-860M vintage into the CSV contract, cite the U.S. Energy Information Administration and the publication date of that vintage.
+
+Queued Up redistribution terms were not settled for this release. Do not commit those workbooks here.

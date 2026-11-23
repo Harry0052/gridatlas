@@ -1,0 +1,4 @@
+record_id,request_id,technology,quantity,unit,basis,row_status
+GEN-N-1,,Solar,100,MW,nameplate_mw,operating
+GEN-N-1,,Solar,100,MW,nameplate_mw,operating
+GEN-N-2,,Wind,20,MW,nameplate_mw,operating

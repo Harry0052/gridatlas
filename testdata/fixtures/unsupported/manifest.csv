@@ -1,0 +1,2 @@
+product,source_url,release_date,reporting_period,unit,region,mapping_method,content_sha256,snapshot_file,freshness_threshold_days
+installed_nameplate,fixture://unsupported/installed,2026-03-01,2026-03,MW,SYN-WEST,state_sum,19a7e51ab075a3f546453b342cc39be105a97051ad51b6c2792839d2daf94f66,snapshots/installed.csv,90

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GridAtlas report</title>
+<style>
+  :root {
+    --ink: #1b1914;
+    --muted: #5c564c;
+    --paper: #f3efe6;
+    --panel: #fffdf8;
+    --line: #d8d0c3;
+    --focus: #0b3a4a;
+    --available: #0f6e56;
+    --stale: #8a5a00;
+    --missing: #4d5560;
+    --incompatible: #8f2d2d;
+    --unobserved: #1f3a5f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.5 "Segoe UI", "Helvetica Neue", sans-serif;
+  }
+  .skip {
+    position: absolute;
+    left: 0.5rem;
+    top: -3rem;
+    background: var(--focus);
+    color: white;
+    padding: 0.4rem 0.7rem;
+  }
+  .skip:focus { top: 0.5rem; }
+  header, main { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+  header { padding: 1.5rem 0 0.5rem; }
+  .eyebrow { margin: 0; letter-spacing: 0.08em; text-transform: uppercase; color: var(--focus); font-size: 0.78rem; }
+  h1 { margin: 0.2rem 0; font-family: Georgia, "Iowan Old Style", serif; font-size: 2rem; line-height: 1.15; }
+  h2 { font-family: Georgia, "Iowan Old Style", serif; font-size: 1.35rem; margin: 0 0 0.5rem; }
+  .lede, .note { color: var(--muted); }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin: 1rem 0;
+  }
+  .limitations li + li { margin-top: 0.35rem; }
+  fieldset { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+  legend { padding: 0 0.3rem; font-weight: 650; }
+  .choices { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  label { display: flex; gap: 0.4rem; align-items: center; }
+  button, .choice input { accent-color: var(--focus); }
+  button, [role="button"], tr[tabindex], path { }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .layout { display: grid; grid-template-columns: minmax(240px, 0.8fr) 1.4fr; gap: 1rem; align-items: start; }
+  .layout > * { min-width: 0; }
+  svg { width: 100%; height: auto; background: #f7f4ee; border: 1px solid var(--line); border-radius: 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; list-style: none; }
+  .legend li, .badge { border-radius: 999px; padding: 0.1rem 0.55rem; font-size: 0.85rem; border: 1px solid transparent; }
+  .status-available { background: #d7efe6; color: var(--available); }
+  .status-stale { background: #f8e7c4; color: var(--stale); }
+  .status-missing, .status-unknown { background: #e6e8eb; color: var(--missing); }
+  .status-incompatible { background: #f8d6d6; color: var(--incompatible); }
+  .status-unobserved { background: #e4ebf5; color: var(--unobserved); }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); }
+  th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 0.45rem 0.4rem; vertical-align: top; }
+  th { font-size: 0.85rem; }
+  tr[aria-selected="true"] { background: #e7f0f3; }
+  .table-scroll { max-width: 100%; overflow-x: auto; }
+  .trace { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, monospace; font-size: 0.85rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  button {
+    background: var(--focus);
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    font: inherit;
+  }
+  #live { min-height: 1.5rem; margin: 0.5rem 0; }
+  @media (max-width: 640px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    h1 { font-size: 1.6rem; }
+    .table-scroll { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#results">Skip to results</a>
+<header>
+  <p class="eyebrow">GridAtlas</p>
+  <h1>Regional data-coverage atlas</h1>
+  <p class="lede">Installed nameplate MW, queued requested MW, and unobserved headroom stay in separate columns. A missing cell is not zero, and a stale cell keeps its original date.</p>
+</header>
+<main>
+  <section class="panel limitations" aria-labelledby="limits-title">
+    <h2 id="limits-title">Limitations</h2>
+    <ul id="limits"></ul>
+  </section>
+  <form>
+    <fieldset>
+      <legend>Metric</legend>
+      <div class="choices" id="metric-choices">
+        <label class="choice"><input type="radio" name="metric" value="installed_nameplate_mw" checked> Installed nameplate MW</label>
+        <label class="choice"><input type="radio" name="metric" value="queued_requested_mw"> Queued requested MW</label>
+        <label class="choice"><input type="radio" name="metric" value="headroom_mw"> Unobserved headroom</label>
+      </div>
+    </fieldset>
+  </form>
+  <p id="live" aria-live="polite" aria-atomic="true"></p>
+  <div class="layout">
+    <section class="panel" aria-labelledby="map-title">
+      <h2 id="map-title">Map</h2>
+      <p class="note">Synthetic rectangles. Not administrative boundaries, substations, or lines.</p>
+      <div id="map"></div>
+      <ul class="legend" aria-label="Status legend">
+        <li class="status-available">available</li>
+        <li class="status-stale">stale</li>
+        <li class="status-missing">missing</li>
+        <li class="status-unknown">unknown</li>
+        <li class="status-incompatible">incompatible</li>
+        <li class="status-unobserved">unobserved</li>
+      </ul>
+    </section>
+    <section class="panel" id="results" aria-labelledby="table-title">
+      <h2 id="table-title">Table</h2>
+      <div class="table-scroll">
+      <table>
+        <caption id="table-caption">Values for the selected metric. The other metrics stay in the downloaded report.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Status</th>
+            <th scope="col">Value</th>
+            <th scope="col">Release date</th>
+            <th scope="col">Coverage</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      </div>
+      <h2>Trace</h2>
+      <div id="trace" class="trace" tabindex="0"></div>
+    </section>
+  </div>
+  <section class="panel" aria-labelledby="export-title">
+    <h2 id="export-title">Export</h2>
+    <p class="note">The JSON file is the machine report. The summary is the same findings in text, including snapshot file names and checksums.</p>
+    <div class="actions">
+      <button type="button" id="dl-json">Download JSON</button>
+      <button type="button" id="dl-md">Download summary</button>
+    </div>
+  </section>
+</main>
+<script type="application/json" id="gridatlas-atlas">__GRIDATLAS_ATLAS__</script>
+<script type="application/json" id="gridatlas-geo">__GRIDATLAS_GEO__</script>
+<script type="application/json" id="gridatlas-summary">__GRIDATLAS_SUMMARY__</script>
+<script type="module">
+__GRIDATLAS_SCRIPT__
+</script>
+<noscript>This report needs JavaScript for the map. The summary.md file next to this page has the same values.</noscript>
+</body>
+</html>

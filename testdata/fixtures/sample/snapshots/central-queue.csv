@@ -1,0 +1,2 @@
+record_id,request_id,technology,quantity,unit,basis,row_status
+QR-C-1,Q-C-1,Wind,40,MW,requested_mw,active
