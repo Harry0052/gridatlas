@@ -10,7 +10,7 @@
 | P04 | PASS |
 | P05 | PASS |
 | P06 | PASS |
-| P07 | not started |
+| P07 | PASS |
 
 ## P01 — Research overlap and confirm the MVP
 
@@ -199,3 +199,43 @@ input invalid (schema): manifest.csv: missing required column "unit"
 **Open issues:** none that block publishing. The tag and the hosted run happen in P07.
 
 **Next phase:** P07
+
+## P07 — Publish and verify on GitHub
+
+**Phase and status:** P07 PASS
+
+**Files changed:**
+
+- `docs/grokbot-progress.md` (this record). The tagged tree is `c824b4f5301f330981c88039449072eb2a390275`.
+
+**Commands and results:**
+
+- Destination checked: `https://github.com/Harry0052/gridatlas`, visibility `PUBLIC`, license `MIT`. The remote matches that repository. Main was not merged.
+- GitHub Actions run `45109319861` completed with conclusion `success` on `c824b4f5301f330981c88039449072eb2a390275`. URL: `https://github.com/Harry0052/gridatlas/actions/runs/45109319861`. The test job passed install, tests, the demo, and the report upload.
+- Annotated tag `v0.1.0` points at that commit and is on the remote. `git rev-parse v0.1.0^{}` is `c824b4f5301f330981c88039449072eb2a390275`.
+- Fresh public clone of the tag:
+
+```text
+git clone --branch v0.1.0 --depth 1 https://github.com/Harry0052/gridatlas.git
+clone_head c824b4f5301f330981c88039449072eb2a390275
+npm ci
+npm run demo
+clone_demo ok
+```
+
+The cloned demo wrote `dist/demo/summary.md` (6,068 bytes) with 120 MW installed, 50 MW queued, unobserved headroom, a reported zero, a missing cell, and the rejected row kept as 999 MVA.
+
+**Artifact paths:**
+
+- Tag `v0.1.0`
+- Pull request: `https://github.com/Harry0052/gridatlas/pull/1`
+- CI: `https://github.com/Harry0052/gridatlas/actions/runs/45109319861`
+- Demo report from the tagged clone: `/tmp/gridatlas-v010/dist/demo/summary.md`
+
+**Open issues:**
+
+- EIA-860M and Queued Up files stay out of the repository, as decided in P01.
+- The page still has no favicon. That 404 does not change the report.
+- No GitHub Release asset was uploaded. The supported demo outputs are produced by `npm run demo` and by the workflow artifact `demo-report`.
+
+**Next phase:** none. The owner merges.
